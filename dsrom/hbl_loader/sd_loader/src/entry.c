@@ -390,16 +390,16 @@ static int LoadFileToMem(private_data_t *private_data, const char *filepath, uns
 
         int status = private_data->FSGetMountSource(pClient, pCmd, 0, tempPath, -1);
         if (status != 0) {
-            private_data->OSFatal("-3");
+            private_data->OSFatal("-3 Unable to find SD card");
         }
         status = private_data->FSMount(pClient, pCmd, tempPath, mountPath, FS_MAX_MOUNTPATH_SIZE, -1);
         if(status != 0) {
-            private_data->OSFatal("-4");
+            private_data->OSFatal("-4 Unable to mount SD card");
         }
 
         status = private_data->FSOpenFile(pClient, pCmd, filepath, "r", &iFd, -1);
         if(status != 0) {
-            private_data->OSFatal("-5");
+            private_data->OSFatal("-5 Cannot open file , check directories are correct");
         }
 
         FSStat stat;
